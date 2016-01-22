@@ -1,0 +1,132 @@
+<div class="account-container register">
+
+    <div class="content clearfix">
+
+        <form novalidate name="signupForm" autocomplete="off">
+
+            <h1 class="signup-header">Signup Free Account</h1>
+
+            <div class="login-fields">
+
+                <p>Create your free account:</p>
+
+                <div class="field">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" name="firstName" value="" id="firstName" placeholder="First Name"
+                           class="login"
+                           ng-model="userRoles.firstName"
+                           ng-minlength="2"
+                           ng-maxlength="8"
+                           required />
+
+                    <!-- show an error if username is too short -->
+                    <p ng-show="signupForm.firstName.$error.minlength">First Name is too short.</p>
+
+                    <!-- show an error if username is too long -->
+                    <p ng-show="signupForm.firstName.$error.maxlength">First Name is too long.</p>
+
+                    <!-- show an error if this isn't filled in -->
+                    <p ng-show="signupForm.firstName.$error.required">First Name is required.</p>
+                </div>
+                <!-- /field -->
+
+                <div class="field">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" name="lastName" value="" id="lastName" placeholder="Last Name"
+                           class="login"
+                           ng-model="userRoles.lastName"
+                           ng-minlength="2"
+                           ng-maxlength="8"
+                           required
+                    />
+                    <!-- show an error if username is too short -->
+                    <p ng-show="signupForm.lastName.$error.minlength">Last Name is too short.</p>
+
+                    <!-- show an error if username is too long -->
+                    <p ng-show="signupForm.lastName.$error.maxlength">Last Name is too long.</p>
+
+                    <!-- show an error if this isn't filled in -->
+                    <p ng-show="signupForm.lastName.$error.required">Last Name is required.</p>
+                </div>
+                <!-- /field -->
+
+
+                <div class="field">
+                    <label for="email">Email Address:</label>
+                    <input type="text" name="email" value="" id="email" placeholder="Enter Email"
+                           class="login" ng-model="userRoles.users.username" validator="required,email"
+                           required-error-message="Email is required"
+                           email-error-message="Invalid email address" valid-method="watch" />
+                </div>
+                <!-- /field -->
+
+                <div class="field">
+                    <label for="password">Password:</label>
+                    <input type="password"
+                           name="password"
+                           id="password"
+                           value=""
+                           placeholder="Password"
+                           class="login"
+                           ng-model="userRoles.users.password"
+                           validator="required"
+                           required-error-message="Password is required"
+                           valid-method="watch" />
+                </div>
+                <!-- /field -->
+
+                <div class="field">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password"
+                           id="confirm_password"
+                           name="confirm_password"
+                           value=""
+                           placeholder="Confirm Password"
+                           class="login"
+                           required
+                           data-password-verify="userRoles.users.password"/>
+                    <!--<div class="msg-block" ng-show="signupForm.$error" pw-check="password">
+                        <span class="msg-error" ng-show="signupForm.confirm_password.$error.passwordVerify">Passwords don't match.</span>
+                    </div>-->
+                </div>
+                <!-- /field -->
+
+            </div>
+            <!-- /login-fields -->
+
+            <div class="login-actions">
+
+                <span class="login-checkbox">
+					<input id="signUpField"
+                           name="Field"
+                           type=checkbox
+                           ng-model="checked"
+                           class="field login-checkbox"
+                           value="First Choice" tabindex="4" />
+					<label class="choice" for="signUpField">Agree with the Terms & Conditions.</label>
+				</span>
+
+                <button ng-model="button"
+                        id="registerButton"
+                        class="button btn btn-primary btn-large"
+                        validation-submit="signupForm"
+                        ng-disabled="!checked"
+                        ng-click="doSignUp()">Register</button>
+
+            </div>
+            <!-- .actions -->
+
+        </form>
+
+    </div>
+    <!-- /content -->
+
+</div>
+<!-- /account-container -->
+
+
+<!-- Text Under Box -->
+<div class="login-extra">
+    Already have an account? <a href="#" ng-click="selected.item = 'LOG IN'">Login to your account</a>
+</div>
+<!-- /login-extra -->

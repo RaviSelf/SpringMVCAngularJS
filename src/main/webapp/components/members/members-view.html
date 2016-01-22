@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="table-responsive">
+
+        <!-- PAGE HEADER -->
+        <div class="page-header"><h1>Member</h1></div>
+
+        <!-- FORM -->
+        <!-- pass in the variable if our form is valid or invalid -->
+        <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+        <form class="form-horizontal" name="userForm" ng-submit="addNewMember(member)" method="post" novalidate auto-complete="false">
+            <table class="table member-table">
+                <tr>
+                    <td>
+                        <!-- Role -->
+                        <div class="form-group">
+                            <select name="role" ng-model="role" ng-options="role.Description for role in roles">
+                                <option style="display: none" value="">-- Choose Role --</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- NAME -->
+                        <div ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
+                            <input type="text" name="firstName" class="form-control" ng-model="member.firstName"
+                                   placeholder="First Name" required/>
+
+                            <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine"
+                               class="help-block">You first name is required.</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+                            <input type="text" name="lastName" class="form-control" ng-model="member.lastName"
+                                   placeholder="Last Name" required/>
+
+                            <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" class="help-block">
+                                You last name is required.</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <select name="gender" ng-model="gender" ng-options="gender.Value for gender in genderArray">
+                                <option style="display: none" value="">-- I am --</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="no-border">
+                        <div ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                            <input type="email" name="email" class="form-control" ng-model="member.email"
+                                   placeholder="Enter Email">
+
+                            <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a
+                                valid email.</p>
+                        </div>
+                    </td>
+                    <td class="no-border">
+                        <div ng-class="{ 'has-error' : userForm.phone.$invalid && !userForm.phone.$pristine }">
+                            <input type="text" name="phone" class="form-control" data-phone
+                                   ng-model="member.phoneNumber"
+                                   placeholder="Enter Phone Number" ng-minlength="10" ng-maxlength="10" ng-required>
+
+                            <p class="help-block" ng-show="member.phone.$error.required && member.phone.$error.number">
+                                Valid phone number is required</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="no-border">
+                        <div ng-class="{ 'has-error' : userForm.address1.$invalid && !userForm.address1.$pristine }">
+                            <input type="text" name="address1" class="form-control" ng-model="member.address.address1"
+                                   ng-minlength="3" placeholder="Address 1">
+
+                            <p ng-show="userForm.address1.$error.minlength" class="help-block">address1 is too
+                                short.</p>
+                        </div>
+                    </td>
+                    <td class="no-border">
+                        <div ng-class="{ 'has-error' : userForm.address1.$invalid && !userForm.address1.$pristine }">
+                            <input type="text" name="address2" class="form-control" ng-model="member.address.address2"
+                                   ng-minlength="3" placeholder="Address 2"/>
+
+                            <p ng-show="userForm.address2.$error.minlength" class="help-block">address2 is too
+                                short.</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="no-border">
+                        <div ng-class="{ 'has-error' : userForm.city.$invalid && !userForm.city.$pristine }">
+                            <input type="text" name="city" class="form-control" ng-model="member.address.city"
+                                   ng-minlength="3" placeholder="City"/>
+
+                            <p ng-show="userForm.city.$error.minlength" class="help-block">city is too short.</p>
+                        </div>
+                    </td>
+                    <td class="no-border">
+                        <div ng-class="{ 'has-error' : userForm.state.$invalid && !userForm.state.$pristine }">
+                            <input type="text" name="state" class="form-control" ng-model="member.address.state"
+                                   ng-minlength="3" placeholder="State"/>
+
+                            <p ng-show="userForm.state.$error.minlength" class="help-block">State is too short.</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="no-border">
+                        <div ng-class="{ 'has-error' : userForm.pinCode.$invalid && !userForm.pinCode.$pristine }">
+                            <input type="text" name="pinCode" class="form-control" ng-model="member.address.pinCode"
+                                   ng-minlength="6" placeholder="PinCode">
+
+                            <p ng-show="userForm.pincode.$error.minlength" class="help-block">pinCode is too short.</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="no-border">
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-primary">Submit</button>
+                        <button type="reset" ng-click="resetForm()" class="btn btn-danger">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+    <!-- col-sm-8 -->
+</div><!-- /container -->
