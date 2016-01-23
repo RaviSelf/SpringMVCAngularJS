@@ -37,5 +37,11 @@ var LoginController = ['$scope', 'AppServices', '$location', '$rootScope', '$uib
             }
         })
     };
+
+    $scope.canNotMoveForward = function()
+    {
+        $scope.enableDisableButton = ((Object.keys($scope.userRoles).length == 3) && (Object.keys($scope.userRoles.users).length == 3));
+    }
+
 }];
 

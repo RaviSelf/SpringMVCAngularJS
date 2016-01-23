@@ -17,6 +17,7 @@
                            ng-model="userRoles.firstName"
                            ng-minlength="2"
                            ng-maxlength="8"
+                           ng-change="canNotMoveForward()"
                            required />
 
                     <!-- show an error if username is too short -->
@@ -37,6 +38,7 @@
                            ng-model="userRoles.lastName"
                            ng-minlength="2"
                            ng-maxlength="8"
+                           ng-change="canNotMoveForward()"
                            required
                     />
                     <!-- show an error if username is too short -->
@@ -52,11 +54,16 @@
 
 
                 <div class="field">
-                    <label for="email">Email Address:</label>
-                    <input type="text" name="email" value="" id="email" placeholder="Enter Email"
-                           class="login" ng-model="userRoles.users.username" validator="required,email"
-                           required-error-message="Email is required"
-                           email-error-message="Invalid email address" valid-method="watch" />
+                    <label for="username">Email Address:</label>
+                    <input type="text" name="username" value="" id="username"
+                           placeholder="Enter User Name"
+                           class="login"
+                           ng-model="userRoles.users.username"
+                           ng-change="canNotMoveForward()"
+                           validator="required,email"
+                           required-error-message="User is required"
+                           email-error-message="Invalid email address"
+                           valid-method="watch" />
                 </div>
                 <!-- /field -->
 
@@ -69,6 +76,7 @@
                            placeholder="Password"
                            class="login"
                            ng-model="userRoles.users.password"
+                           ng-change="canNotMoveForward()"
                            validator="required"
                            required-error-message="Password is required"
                            valid-method="watch" />
@@ -76,14 +84,16 @@
                 <!-- /field -->
 
                 <div class="field">
-                    <label for="confirm_password">Confirm Password:</label>
+                    <label for="confirmPassword">Confirm Password:</label>
                     <input type="password"
-                           id="confirm_password"
-                           name="confirm_password"
+                           id="confirmPassword"
+                           name="confirmPassword"
                            value=""
                            placeholder="Confirm Password"
                            class="login"
                            required
+                           ng-model="userRoles.users.confirmPassword"
+                           ng-change="canNotMoveForward()"
                            data-password-verify="userRoles.users.password"/>
                     <!--<div class="msg-block" ng-show="signupForm.$error" pw-check="password">
                         <span class="msg-error" ng-show="signupForm.confirm_password.$error.passwordVerify">Passwords don't match.</span>
@@ -101,6 +111,7 @@
                            name="Field"
                            type=checkbox
                            ng-model="checked"
+                           ng-disabled="!enableDisableButton"
                            class="field login-checkbox"
                            value="First Choice" tabindex="4" />
 					<label class="choice" for="signUpField">Agree with the Terms & Conditions.</label>
@@ -112,6 +123,8 @@
                         validation-submit="signupForm"
                         ng-disabled="!checked"
                         ng-click="doSignUp()">Register</button>
+
+
 
             </div>
             <!-- .actions -->
