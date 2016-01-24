@@ -34,9 +34,10 @@ var LoginController = ['$scope', 'AppServices', '$location', '$rootScope', '$uib
         AppServices.signUp($scope.userRoles).then(function (result){
             $scope.data = result;
             if (!result.error) {
-                //$location.path("/login");
                 $scope.selected.item = 'LOG IN';
             }
+            else
+                $scope.selected.item = 'SIGN UP';
         })
     };
 
