@@ -11,7 +11,9 @@ var LoginController = ['$scope', 'AppServices', '$location', '$rootScope', '$uib
     };
 
     $scope.userRoles = {};
-    $scope.users = {};
+    $scope.userRoles.users = {};
+    $scope.confirmPassword = {};
+    $scope.hasAgreedChecked = {};
 
     $scope.doLogin = function () {
         console.log("Do login Clicked", $scope.users);
@@ -38,9 +40,14 @@ var LoginController = ['$scope', 'AppServices', '$location', '$rootScope', '$uib
         })
     };
 
-    $scope.canNotMoveForward = function()
+    $scope.canMoveForward = function()
     {
-        $scope.enableDisableButton = ((Object.keys($scope.userRoles).length == 3) && (Object.keys($scope.userRoles.users).length == 3));
+        $scope.enableDisableButton = $scope.userRoles.firstName !== undefined && $scope.userRoles.firstName.length > 0 &&
+                $scope.userRoles.lastName !== undefined && $scope.userRoles.lastName.length > 0 &&
+                $scope.confirmPassword.password !== undefined && $scope.confirmPassword.password.length > 0 &&
+                $scope.userRoles.users.username !== undefined && $scope.userRoles.users.username.length > 0 &&
+                $scope.userRoles.users.password !== undefined && $scope.userRoles.users.password.length > 0 &&
+                $scope.hasAgreedChecked.checked;
     }
 
 }];

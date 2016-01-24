@@ -17,7 +17,7 @@
                            ng-model="userRoles.firstName"
                            ng-minlength="2"
                            ng-maxlength="8"
-                           ng-change="canNotMoveForward()"
+                           ng-change="canMoveForward()"
                            required />
 
                     <!-- show an error if username is too short -->
@@ -38,7 +38,7 @@
                            ng-model="userRoles.lastName"
                            ng-minlength="2"
                            ng-maxlength="8"
-                           ng-change="canNotMoveForward()"
+                           ng-change="canMoveForward()"
                            required
                     />
                     <!-- show an error if username is too short -->
@@ -59,7 +59,7 @@
                            placeholder="Enter User Name"
                            class="login"
                            ng-model="userRoles.users.username"
-                           ng-change="canNotMoveForward()"
+                           ng-change="canMoveForward()"
                            validator="required,email"
                            required-error-message="User is required"
                            email-error-message="Invalid email address"
@@ -76,7 +76,7 @@
                            placeholder="Password"
                            class="login"
                            ng-model="userRoles.users.password"
-                           ng-change="canNotMoveForward()"
+                           ng-change="canMoveForward()"
                            validator="required"
                            required-error-message="Password is required"
                            valid-method="watch" />
@@ -92,8 +92,8 @@
                            placeholder="Confirm Password"
                            class="login"
                            required
-                           ng-model="userRoles.users.confirmPassword"
-                           ng-change="canNotMoveForward()"
+                           ng-model="confirmPassword.password"
+                           ng-change="canMoveForward()"
                            data-password-verify="userRoles.users.password"/>
                     <!--<div class="msg-block" ng-show="signupForm.$error" pw-check="password">
                         <span class="msg-error" ng-show="signupForm.confirm_password.$error.passwordVerify">Passwords don't match.</span>
@@ -110,8 +110,7 @@
 					<input id="signUpField"
                            name="Field"
                            type=checkbox
-                           ng-model="checked"
-                           ng-disabled="!enableDisableButton"
+                           ng-model="hasAgreedChecked.checked"
                            class="field login-checkbox"
                            value="First Choice" tabindex="4" />
 					<label class="choice" for="signUpField">Agree with the Terms & Conditions.</label>
@@ -121,10 +120,8 @@
                         id="registerButton"
                         class="button btn btn-primary btn-large"
                         validation-submit="signupForm"
-                        ng-disabled="!checked"
+                        ng-disabled="!enableDisableButton"
                         ng-click="doSignUp()">Register</button>
-
-
 
             </div>
             <!-- .actions -->
